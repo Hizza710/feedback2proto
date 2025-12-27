@@ -1,3 +1,5 @@
+/* ver2 */
+
 <?php
 function db_conn()
 {
