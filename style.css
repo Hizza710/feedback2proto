@@ -1,0 +1,1011 @@
+:root {
+    --bg0: #050812;
+    --bg1: #070b16;
+    --ink: rgba(255, 255, 255, .92);
+    --muted: rgba(255, 255, 255, .64);
+    --line: rgba(255, 255, 255, .14);
+    --glass: rgba(255, 255, 255, .06);
+    --glass2: rgba(255, 255, 255, .04);
+    --neo1: #7cf7d4;
+    --neo2: #a2b7ff;
+    --neo3: #ff6bd6;
+    --warn: #ffd36b;
+    --r1: 18px;
+    --r2: 26px;
+}
+
+:where(html) {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+:where(body) {
+    box-sizing: inherit;
+    height: 100%;
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(124, 247, 212, .16), transparent 60%),
+        radial-gradient(1000px 700px at 85% 20%, rgba(162, 183, 255, .14), transparent 60%),
+        radial-gradient(900px 700px at 60% 85%, rgba(255, 107, 214, .10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    overflow-x: hidden;
+}
+
+:where(.topbar) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 14px 0 8px;
+}
+
+:where(.brand) {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+:where(.badge) {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    letter-spacing: .08em;
+    font-weight: 900;
+    background: linear-gradient(135deg, rgba(124, 247, 212, .22), rgba(162, 183, 255, .18));
+    border: 1px solid rgba(255, 255, 255, .14);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .45);
+}
+
+:where(.titles h1) {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: .02em;
+    color: #ffffff;
+}
+
+:where(.titles p) {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+:where(.nav) {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+:where(.navbtn) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(255, 255, 255, .03);
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .35);
+}
+
+:where(.navbtn):hover {
+    border-color: rgba(124, 247, 212, .45);
+    color: #fff;
+    text-decoration: none;
+}
+
+:where(.card) {
+    position: relative;
+    margin-top: 14px;
+    border-radius: var(--r2);
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+    box-shadow: 0 22px 70px rgba(0, 0, 0, .45);
+    overflow: hidden;
+}
+
+:where(.card)::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background:
+        conic-gradient(from 180deg at 50% 50%,
+            rgba(124, 247, 212, .00),
+            rgba(124, 247, 212, .18),
+            rgba(162, 183, 255, .16),
+            rgba(255, 107, 214, .14),
+            rgba(124, 247, 212, .00));
+    filter: blur(14px);
+    opacity: .55;
+    pointer-events: none;
+}
+
+:where(.card)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(1200px 400px at 20% 0%, rgba(255, 255, 255, .10), transparent 60%),
+        radial-gradient(900px 450px at 90% 10%, rgba(255, 255, 255, .08), transparent 55%);
+    pointer-events: none;
+}
+
+:where(.card-inner) {
+    position: relative;
+    padding: 18px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+:where(.h2) {
+    margin: 0 0 12px;
+    font-size: 15px;
+    letter-spacing: .08em;
+    color: rgba(255, 255, 255, .86);
+}
+
+:where(.subnote) {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: -6px;
+}
+
+:where(.note) {
+    margin-top: 14px;
+    padding: 12px 12px;
+    border-radius: 18px;
+    border: 1px dashed rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .03);
+    color: rgba(255, 255, 255, .78);
+    line-height: 1.6;
+}
+
+/* 送信完了の導線（虹色CTA） */
+:where(.rainbow-cta) {
+    display: block;
+    width: 100%;
+    margin: 14px 0 10px;
+    padding: 14px 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, .20);
+    text-align: center;
+    background:
+        linear-gradient(90deg,
+            rgba(124, 247, 212, .30),
+            rgba(162, 183, 255, .28),
+            rgba(255, 107, 214, .26),
+            rgba(255, 211, 107, .26),
+            rgba(124, 247, 212, .30));
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .35);
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+:where(.rainbow-cta)::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background:
+        linear-gradient(90deg,
+            rgba(124, 247, 212, .14),
+            rgba(162, 183, 255, .14),
+            rgba(255, 107, 214, .12),
+            rgba(255, 211, 107, .12),
+            rgba(124, 247, 212, .14));
+    filter: blur(10px);
+    opacity: .75;
+    pointer-events: none;
+}
+
+:where(.rainbow-cta)>* {
+    position: relative;
+}
+
+:where(.rainbow-cta-title) {
+    display: block;
+    font-weight: 900;
+    letter-spacing: .02em;
+    font-size: 18px;
+}
+
+:where(.rainbow-cta-sub) {
+    display: block;
+    margin-top: 4px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, .92);
+}
+
+:where(.rainbow-cta:hover) {
+    border-color: rgba(124, 247, 212, .55);
+    transform: translateY(-1px);
+}
+
+:where(.rainbow-cta:focus-visible) {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(124, 247, 212, .18), 0 18px 60px rgba(0, 0, 0, .35);
+}
+
+:where(.form) {
+    display: grid;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+:where(.form-actions) {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+:where(.field span) {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 6px;
+    letter-spacing: .06em;
+}
+
+:where(.input) {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(0, 0, 0, .20);
+    color: var(--ink);
+    padding: 12px 12px;
+    outline: none;
+    font-size: 15px;
+}
+
+:where(.textarea) {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(0, 0, 0, .20);
+    color: var(--ink);
+    padding: 12px 12px;
+    outline: none;
+    min-height: 140px;
+    resize: vertical;
+    font-size: 15px;
+}
+
+:where(.input):focus {
+    border-color: rgba(124, 247, 212, .55);
+    box-shadow: 0 0 0 3px rgba(124, 247, 212, .10);
+}
+
+:where(.textarea):focus {
+    border-color: rgba(124, 247, 212, .55);
+    box-shadow: 0 0 0 3px rgba(124, 247, 212, .10);
+}
+
+:where(.input)::placeholder,
+:where(.textarea)::placeholder {
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+:where(.btn) {
+    border: 0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    cursor: pointer;
+    font-weight: 900;
+    letter-spacing: .08em;
+    color: #071018;
+    background: linear-gradient(135deg, rgba(124, 247, 212, .95), rgba(162, 183, 255, .92));
+    box-shadow: 0 18px 50px rgba(124, 247, 212, .18);
+}
+
+:where(.btn):hover {
+    filter: brightness(1.03);
+}
+
+:where(.btn.small) {
+    padding: 11px 13px;
+}
+
+:where(.ghost) {
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(255, 255, 255, .03);
+    color: var(--ink);
+    border-radius: 14px;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+:where(.ghost):hover {
+    border-color: rgba(162, 183, 255, .45);
+}
+
+:where(.ghost.mini) {
+    padding: 7px 10px;
+    border-radius: 12px;
+}
+
+:where(.deck) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+    /* 同じ行のカードは高さを揃える */
+    align-items: stretch;
+}
+
+:where(.post) {
+    grid-column: span 6;
+    border-radius: var(--r2);
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(255, 255, 255, .04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .40);
+    /* 下部（スタンプ＋コメントする）を揃えるための縦レイアウト */
+    display: flex;
+    flex-direction: column;
+}
+
+:where(.post)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(124, 247, 212, .12), transparent 35%),
+        linear-gradient(180deg, rgba(255, 255, 255, .10), transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 新レイアウトの中身が背景に負けないように前面へ */
+:where(.post-header-new),
+:where(.feedforward-section),
+:where(.comment-form-section),
+:where(.chips),
+:where(.post-body) {
+    position: relative;
+    z-index: 1;
+}
+
+/* 角丸に文字が食われるのを防ぐ（内側の余白を少し増やす） */
+:where(.post-header-new) {
+    padding: 14px 18px 0;
+    margin-bottom: 12px;
+}
+
+:where(.feedforward-section),
+:where(.comment-form-section) {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+:where(.comment-form-section) {
+    margin-top: auto;
+}
+
+:where(.post-head) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 14px 0;
+    position: relative;
+}
+
+:where(.post-id) {
+    font-size: 11px;
+    letter-spacing: .14em;
+    color: rgba(255, 255, 255, .72);
+    opacity: .85;
+}
+
+:where(.post-name) {
+    font-weight: 900;
+    letter-spacing: .06em;
+    margin-top: 6px;
+}
+
+:where(.post-time) {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+:where(.plate) {
+    margin-left: auto;
+    padding: 8px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background:
+        radial-gradient(400px 100px at 30% 0%, rgba(255, 255, 255, .12), transparent 55%),
+        rgba(0, 0, 0, .18);
+    font-size: 12px;
+    letter-spacing: .06em;
+}
+
+:where(.chips) {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 18px 0;
+    position: relative;
+}
+
+:where(.chip) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(124, 247, 212, .26);
+    background: rgba(124, 247, 212, .07);
+    font-size: 12px;
+    color: rgba(255, 255, 255, .88);
+}
+
+:where(.chip):hover {
+    border-color: rgba(124, 247, 212, .52);
+}
+
+:where(.post-body) {
+    padding: 12px 18px 14px;
+    color: rgba(255, 255, 255, .86);
+    line-height: 1.7;
+    font-size: 13px;
+    white-space: normal;
+    position: relative;
+}
+
+:where(.dear-wrap) {
+    margin: 14px 14px 16px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(255, 255, 255, .03);
+    padding: 12px;
+    position: relative;
+}
+
+:where(.dear-title) {
+    font-size: 12px;
+    letter-spacing: .18em;
+    color: rgba(255, 255, 255, .70);
+    margin-bottom: 10px;
+}
+
+:where(.flip) {
+    perspective: 1200px;
+    border-radius: 22px;
+    outline: none;
+    user-select: none;
+}
+
+:where(.flip-inner) {
+    position: relative;
+    width: 100%;
+    min-height: 170px;
+    transform-style: preserve-3d;
+    transition: transform .62s cubic-bezier(.2, .8, .2, 1);
+}
+
+:where(.flip.is-open .flip-inner) {
+    transform: rotateY(180deg);
+}
+
+:where(.flip-front) {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    backface-visibility: hidden;
+}
+
+:where(.flip-back) {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+:where(.envelope) {
+    height: 100%;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background:
+        radial-gradient(600px 200px at 20% 0%, rgba(255, 255, 255, .12), transparent 55%),
+        linear-gradient(135deg, rgba(124, 247, 212, .10), rgba(162, 183, 255, .08)),
+        rgba(0, 0, 0, .18);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .38);
+    overflow: hidden;
+    position: relative;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+:where(.envelope)::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background:
+        conic-gradient(from 180deg at 50% 50%,
+            rgba(124, 247, 212, .00),
+            rgba(124, 247, 212, .16),
+            rgba(162, 183, 255, .14),
+            rgba(255, 107, 214, .12),
+            rgba(124, 247, 212, .00));
+    filter: blur(16px);
+    opacity: .55;
+    pointer-events: none;
+}
+
+:where(.stamp) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 34px;
+    border-radius: 12px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    color: #071018;
+    background: linear-gradient(135deg, rgba(255, 211, 107, .95), rgba(124, 247, 212, .90));
+    position: relative;
+}
+
+:where(.to) {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: .06em;
+    position: relative;
+}
+
+:where(.hint) {
+    font-size: 12px;
+    color: rgba(255, 255, 255, .72);
+    position: relative;
+}
+
+:where(.count) {
+    margin-left: auto;
+    font-size: 12px;
+    letter-spacing: .10em;
+    color: rgba(255, 255, 255, .74);
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 999px;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, .18);
+    position: relative;
+}
+
+:where(.letter) {
+    height: 100%;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background:
+        radial-gradient(800px 260px at 10% 0%, rgba(255, 255, 255, .10), transparent 60%),
+        rgba(10, 14, 20, .86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px;
+    overflow: auto;
+}
+
+:where(.letter-head) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, .10);
+    padding: 6px 4px 10px;
+}
+
+:where(.letter-title) {
+    font-size: 12px;
+    letter-spacing: .14em;
+    color: rgba(255, 255, 255, .80);
+    font-weight: 900;
+}
+
+:where(.letter-empty) {
+    color: rgba(255, 255, 255, .70);
+    padding: 10px 4px 2px;
+    line-height: 1.6;
+}
+
+:where(.letters) {
+    display: grid;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+:where(.msg) {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(255, 255, 255, .03);
+    padding: 10px;
+}
+
+:where(.msg-from) {
+    font-size: 12px;
+    letter-spacing: .10em;
+    color: rgba(124, 247, 212, .86);
+    margin-bottom: 6px;
+    font-weight: 900;
+}
+
+:where(.msg-text) {
+    color: rgba(255, 255, 255, .86);
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+:where(.msg-time) {
+    margin-top: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, .58);
+}
+
+:where(.fbform) {
+    margin-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, .10);
+    padding-top: 12px;
+}
+
+:where(.fbgrid) {
+    display: grid;
+    gap: 12px;
+}
+
+:where(.flip):focus {
+    box-shadow: 0 0 0 3px rgba(162, 183, 255, .16);
+    border-radius: 22px;
+}
+
+:where(.post .flip) {
+    cursor: pointer;
+}
+
+:where(.post .flip .js-close) {
+    pointer-events: auto;
+}
+
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+    :where(.navbtn, .card-inner, .post, .letter) {
+        background: rgba(15, 23, 34, .92);
+    }
+}
+
+@media (max-width: 920px) {
+    :where(.post) {
+        grid-column: span 12;
+    }
+}
+
+@media (max-width: 720px) {
+    :where(.page) {
+        padding: 14px 12px 44px;
+    }
+
+    :where(.topbar) {
+        align-items: flex-start;
+    }
+
+    :where(.titles h1) {
+        font-size: 16px;
+    }
+
+    :where(.titles p) {
+        font-size: 12px;
+    }
+
+    :where(.card-inner) {
+        padding: 14px;
+    }
+
+    :where(.deck) {
+        gap: 10px;
+    }
+
+    :where(.chips) {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    :where(.post-body) {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    :where(.dear-wrap) {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    :where(.input, .textarea) {
+        font-size: 16px;
+    }
+
+    :where(.textarea) {
+        min-height: 120px;
+    }
+
+    :where(.comment-actions) {
+        min-height: 48px;
+    }
+}
+
+/* コメントセクション */
+:where(.comments-section) {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+:where(.comments-title) {
+    font-size: 13px;
+    color: var(--neo1);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+:where(.comment-item) {
+    background: var(--glass2);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+
+:where(.comment-header) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+:where(.comment-name) {
+    font-size: 12px;
+    color: var(--neo2);
+    font-weight: 600;
+}
+
+:where(.comment-time) {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+:where(.comment-text) {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+/* コメント投稿フォーム */
+:where(.comment-form-section) {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 0;
+}
+
+:where(.comment-form) {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 8px;
+}
+
+:where(.comment-actions) {
+    align-self: stretch;
+}
+
+:where(.comment-input) {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(0, 0, 0, .20);
+    color: var(--ink);
+    padding: 8px 10px;
+    outline: none;
+    font-size: 13px;
+}
+
+:where(.comment-textarea) {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(0, 0, 0, .20);
+    color: var(--ink);
+    padding: 8px 10px;
+    outline: none;
+    font-size: 13px;
+    min-height: 60px;
+    resize: none;
+}
+
+:where(.comment-input):focus,
+:where(.comment-textarea):focus {
+    border-color: rgba(124, 247, 212, .55);
+    box-shadow: 0 0 0 2px rgba(124, 247, 212, .10);
+}
+
+:where(.comment-btn) {
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--neo1), var(--neo2));
+    color: #000;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 16px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+:where(.comment-btn):hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* 新しいカードヘッダーレイアウト */
+:where(.post-header-new) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+:where(.post-title-section) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+:where(.post-author) {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    padding-left: 4px;
+}
+
+:where(.post-work-title) {
+    font-size: 16px;
+    color: var(--neo1);
+    font-weight: 700;
+    letter-spacing: .02em;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+:where(.post-title-author) {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, .72);
+    letter-spacing: .02em;
+    white-space: nowrap;
+}
+
+/* スタンプはコメント投稿のアクション行に配置する */
+:where(.post-title-stamps) {
+    display: none;
+}
+
+:where(.comment-actions) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 10px;
+    /* 各カードで「スタンプ＋コメントする」行の高さを揃える */
+    min-height: 54px;
+}
+
+:where(.comment-stamps) {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-height: 34px;
+}
+
+:where(.comment-stamps .stamp-btn) {
+    font-size: 14px;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+:where(.post-question-label) {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+    font-style: italic;
+    padding-left: 4px;
+}
+
+:where(.post-links) {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+:where(.link-icon) {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--glass);
+    border: 1px solid var(--line);
+    font-size: 18px;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+:where(.link-icon):hover {
+    background: var(--glass2);
+    border-color: var(--neo1);
+    transform: translateY(-2px);
+}
+
+:where(.link-icon.github) {
+    color: var(--ink);
+}
+
+/* スタンプボタン（共通） */
+:where(.stamp-btn) {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--glass);
+    color: var(--ink);
+    font-size: 15px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+}
+
+:where(.stamp-btn):hover {
+    background: var(--glass2);
+    border-color: var(--neo1);
+    transform: scale(1.05);
+}
+
+/* フィードフォワードセクション */
+:where(.feedforward-section) {
+    margin-top: 16px;
+}
+
+:where(.feedforward-title) {
+    font-size: 14px;
+    color: var(--neo2);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :where(.flip-inner) {
+        transition: none;
+    }
+}
