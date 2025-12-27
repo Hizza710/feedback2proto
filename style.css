@@ -1,4 +1,4 @@
-/* ver2 */
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 
 :root {
     --bg0: #050812;
@@ -25,29 +25,52 @@
     box-sizing: inherit;
     height: 100%;
     margin: 0;
-    font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
     color: var(--ink);
     background:
         radial-gradient(1200px 700px at 10% 10%, rgba(124, 247, 212, .16), transparent 60%),
         radial-gradient(1000px 700px at 85% 20%, rgba(162, 183, 255, .14), transparent 60%),
         radial-gradient(900px 700px at 60% 85%, rgba(255, 107, 214, .10), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+:where(body)::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 48%;
+    height: 80px;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(20, 20, 40, 0) 0%, rgba(40, 40, 60, 0.45) 50%, rgba(20, 20, 40, 0) 100%);
+    filter: blur(16px);
+}
+
+:where(.page) {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 :where(.topbar) {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
     flex-wrap: wrap;
-    padding: 14px 0 8px;
+    padding: 0;
 }
 
 :where(.brand) {
     display: flex;
     gap: 14px;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 :where(.badge) {
@@ -77,10 +100,55 @@
     line-height: 1.4;
 }
 
+/* ロゴ画像 */
+:where(.logo-image) {
+    height: 168px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+/* フッターロゴ */
+:where(.footer-logo) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding: 20px;
+    gap: 16px;
+}
+
+:where(.footer-logo-image) {
+    width: 42.5%;
+    max-width: 340px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+:where(.copyright) {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    opacity: 0.6;
+}
+
+:where(.titles) {
+    margin: 0;
+    padding: 0;
+}
+
 :where(.nav) {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 :where(.navbtn) {
@@ -98,6 +166,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 14px 40px rgba(0, 0, 0, .35);
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
 }
 
 :where(.navbtn):hover {
@@ -114,6 +183,8 @@
     background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
     box-shadow: 0 22px 70px rgba(0, 0, 0, .45);
     overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 :where(.card)::before {
@@ -147,6 +218,8 @@
     padding: 18px;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    box-sizing: border-box;
+    width: 100%;
 }
 
 :where(.h2) {
@@ -154,6 +227,7 @@
     font-size: 15px;
     letter-spacing: .08em;
     color: rgba(255, 255, 255, .86);
+    text-align: center;
 }
 
 :where(.subnote) {
@@ -175,9 +249,9 @@
 /* 送信完了の導線（虹色CTA） */
 :where(.rainbow-cta) {
     display: block;
-    width: 100%;
-    margin: 14px 0 10px;
-    padding: 14px 14px;
+    width: calc(100% + 36px);
+    margin: 0 -18px 20px -18px;
+    padding: 20px 14px;
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, .20);
     text-align: center;
@@ -193,6 +267,19 @@
     text-decoration: none;
     position: relative;
     overflow: hidden;
+}
+
+/* フルスクリーン表示用 */
+:where(.rainbow-cta-fullscreen) {
+    margin: -18px;
+    width: calc(100% + 36px);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    border-radius: 0;
 }
 
 :where(.rainbow-cta)::before {
@@ -222,11 +309,21 @@
     font-size: 18px;
 }
 
+:where(.rainbow-cta-fullscreen .rainbow-cta-title) {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
 :where(.rainbow-cta-sub) {
     display: block;
     margin-top: 4px;
     font-size: 15px;
     color: rgba(255, 255, 255, .92);
+}
+
+:where(.rainbow-cta-fullscreen .rainbow-cta-sub) {
+    font-size: 28px;
+    margin-top: 12px;
 }
 
 :where(.rainbow-cta:hover) {
@@ -269,6 +366,8 @@
     padding: 12px 12px;
     outline: none;
     font-size: 15px;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
+    box-sizing: border-box;
 }
 
 :where(.textarea) {
@@ -282,6 +381,8 @@
     min-height: 140px;
     resize: vertical;
     font-size: 15px;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
+    box-sizing: border-box;
 }
 
 :where(.input):focus {
@@ -310,6 +411,7 @@
     color: #071018;
     background: linear-gradient(135deg, rgba(124, 247, 212, .95), rgba(162, 183, 255, .92));
     box-shadow: 0 18px 50px rgba(124, 247, 212, .18);
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
 }
 
 :where(.btn):hover {
@@ -327,6 +429,7 @@
     border-radius: 14px;
     padding: 8px 10px;
     cursor: pointer;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
 }
 
 :where(.ghost):hover {
@@ -345,6 +448,8 @@
     margin-top: 12px;
     /* 同じ行のカードは高さを揃える */
     align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 :where(.post) {
@@ -360,6 +465,8 @@
     /* 下部（スタンプ＋コメントする）を揃えるための縦レイアウト */
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    min-width: 0;
 }
 
 :where(.post)::before {
@@ -470,6 +577,9 @@
     font-size: 13px;
     white-space: normal;
     position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    min-width: 0;
 }
 
 :where(.dear-wrap) {
@@ -701,11 +811,16 @@
 
 @media (max-width: 720px) {
     :where(.page) {
-        padding: 14px 12px 44px;
+        padding: 14px 16px 44px 16px;
     }
 
     :where(.topbar) {
         align-items: flex-start;
+    }
+
+    /* ロゴをレスポンシブ対応 */
+    :where(.logo-image) {
+        height: 84px;
     }
 
     :where(.titles h1) {
@@ -749,6 +864,55 @@
 
     :where(.comment-actions) {
         min-height: 48px;
+    }
+
+    :where(.footer-logo) {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    :where(.footer-logo-image) {
+        width: 51%;
+    }
+
+    :where(.post-title-section) {
+        padding-right: 120px;
+    }
+}
+
+/* さらに小さい画面用 */
+@media (max-width: 480px) {
+    :where(.page) {
+        padding: 12px 12px 40px 12px;
+    }
+
+    :where(.logo-image) {
+        height: 64px;
+    }
+
+    :where(.card-inner) {
+        padding: 12px;
+    }
+
+    :where(.post-body) {
+        padding: 10px 12px 12px 12px;
+    }
+
+    :where(.footer-logo) {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    :where(.footer-logo-image) {
+        width: 59.5%;
+    }
+
+    :where(.post-title-section) {
+        padding-right: 100px;
+    }
+
+    :where(.post-work-title) {
+        font-size: 16px;
     }
 }
 
@@ -799,8 +963,8 @@
 
 /* コメント投稿フォーム */
 :where(.comment-form-section) {
-    margin-top: 16px;
-    padding-top: 16px;
+    margin-top: 8px;
+    padding-top: 8px;
     border-top: 0;
 }
 
@@ -820,9 +984,11 @@
     border: 1px solid rgba(255, 255, 255, .14);
     background: rgba(0, 0, 0, .20);
     color: var(--ink);
-    padding: 8px 10px;
+    padding: 8px 12px;
     outline: none;
     font-size: 13px;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
+    box-sizing: border-box;
 }
 
 :where(.comment-textarea) {
@@ -831,11 +997,13 @@
     border: 1px solid rgba(255, 255, 255, .14);
     background: rgba(0, 0, 0, .20);
     color: var(--ink);
-    padding: 8px 10px;
+    padding: 10px 12px;
     outline: none;
     font-size: 13px;
     min-height: 60px;
     resize: none;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
+    box-sizing: border-box;
 }
 
 :where(.comment-input):focus,
@@ -851,9 +1019,10 @@
     color: #000;
     font-weight: 600;
     font-size: 13px;
-    padding: 8px 16px;
+    padding: 10px 18px;
     cursor: pointer;
-    align-self: flex-end;
+    align-self: center;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
 }
 
 :where(.comment-btn):hover {
@@ -876,6 +1045,7 @@
     flex-direction: column;
     gap: 6px;
     min-width: 0;
+    padding-right: 180px;
 }
 
 :where(.post-author) {
@@ -886,7 +1056,7 @@
 }
 
 :where(.post-work-title) {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--neo1);
     font-weight: 700;
     letter-spacing: .02em;
@@ -895,10 +1065,13 @@
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 :where(.post-title-author) {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: rgba(255, 255, 255, .72);
     letter-spacing: .02em;
@@ -927,6 +1100,13 @@
     min-height: 34px;
 }
 
+:where(.stamps-and-feedforward) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
 :where(.comment-stamps .stamp-btn) {
     font-size: 14px;
     padding: 3px 10px;
@@ -939,6 +1119,7 @@
     line-height: 1.5;
     font-style: italic;
     padding-left: 4px;
+    margin-top: 8px;
 }
 
 :where(.post-links) {
@@ -946,6 +1127,10 @@
     gap: 8px;
     align-items: center;
     flex-shrink: 0;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    margin-right: 140px;
 }
 
 :where(.link-icon) {
@@ -986,6 +1171,7 @@
     align-items: center;
     gap: 3px;
     white-space: nowrap;
+    font-family: 'Yusei Magic', ui-sans-serif, system-ui, sans-serif;
 }
 
 :where(.stamp-btn):hover {
@@ -1002,8 +1188,71 @@
 :where(.feedforward-title) {
     font-size: 14px;
     color: var(--neo2);
-    margin-bottom: 12px;
     font-weight: 600;
+    white-space: nowrap;
+}
+
+/* 削除ボタン（投稿用） */
+:where(.delete-post-btn) {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: auto;
+    height: auto;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: var(--glass);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+:where(.delete-post-btn):hover {
+    background: rgba(255, 107, 214, 0.2);
+    border-color: var(--neo3);
+    transform: scale(1.05);
+}
+
+/* 削除ボタン（コメント用） */
+:where(.delete-comment-btn) {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--glass);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+:where(.delete-comment-btn):hover {
+    background: rgba(255, 107, 214, 0.2);
+    border-color: var(--neo3);
+    color: var(--warn);
+    transform: scale(1.1);
+}
+
+/* コメントヘッダーをフレックスに */
+:where(.comment-header) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
 }
 
 @media (prefers-reduced-motion: reduce) {
