@@ -1,5 +1,3 @@
-/* ver2 */
-
 <?php
 require_once('db_conn.php');
 $pdo = db_conn();
