@@ -1,4 +1,5 @@
 <?php
+// 送信完了かどうかを判定
 $done = isset($_GET['done']);
 ?>
 <!doctype html>
@@ -14,6 +15,7 @@ $done = isset($_GET['done']);
 <body>
 
     <div class="page">
+        <!-- ヘッダー（ロゴとメニュー） -->
         <header class="topbar">
             <div class="brand">
                 <div class="titles">
@@ -26,9 +28,11 @@ $done = isset($_GET['done']);
             </nav>
         </header>
 
+        <!-- メインのカード部分 -->
         <section class="card">
             <div class="card-inner">
                 <?php if ($done): ?>
+                    <!-- 送信完了メッセージ -->
                     <a class="rainbow-cta rainbow-cta-fullscreen" href="select.php" aria-label="みんなの投稿を見に行く">
                         <span class="rainbow-cta-title">♪ 送信完了♪</span>
                         <span class="rainbow-cta-sub">開発、おつかれさま！<br>休んだ後は、メンバーからのフィードバックのギフトを楽しみに。<br><br>ここをクリックすると、皆からのギフトが見られるよ</span>
@@ -36,6 +40,7 @@ $done = isset($_GET['done']);
                 <?php else: ?>
                     <div class="h2">創った作品、気楽に投稿を！皆の意見を聞いてみよう♪</div>
 
+                    <!-- 投稿フォーム -->
                     <form class="form" action="insert.php" method="post">
                         <input class="input" type="text" name="name" required maxlength="64" placeholder="名前（例: Hiro）">
 
@@ -56,7 +61,7 @@ $done = isset($_GET['done']);
             </div>
         </section>
 
-        <!-- フッターロゴ -->
+        <!-- フッター（ロゴと著作権） -->
         <footer class="footer-logo">
             <img src="img/logo_wf30.png" alt="WF30" class="footer-logo-image">
             <div class="copyright">©︎HIRO710</div>

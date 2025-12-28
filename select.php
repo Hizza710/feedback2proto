@@ -1,8 +1,10 @@
 <?php
+// データベース接続と共通関数を読み込む
 require_once('db_conn.php');
 require_once('lib.php');
 $pdo = db_conn();
 
+// 投稿データを取得
 $sql = "SELECT id, name, title, URL, URLgit, question, indate
         FROM gs_wf30_p1
         ORDER BY indate DESC";
@@ -18,7 +20,7 @@ $comment_stmt = $pdo->prepare($comment_sql);
 $comment_stmt->execute();
 $all_comments = $comment_stmt->fetchAll();
 
-// 投稿IDごとにコメントを整理
+// 投稿IDごとにコメントをまとめる
 $comments_by_post = [];
 foreach ($all_comments as $c) {
     $comments_by_post[$c['post_id']][] = $c;
@@ -32,7 +34,7 @@ $stamp_stmt = $pdo->prepare($stamp_sql);
 $stamp_stmt->execute();
 $all_stamps = $stamp_stmt->fetchAll();
 
-// 投稿IDごとにスタンプを整理
+// 投稿IDごとにスタンプをまとめる
 $stamps_by_post = [];
 foreach ($all_stamps as $s) {
     $stamps_by_post[$s['post_id']][$s['stamp_type']] = $s['count'];
@@ -52,6 +54,7 @@ foreach ($all_stamps as $s) {
 <body>
 
     <div class="page">
+        <!-- ヘッダー（ロゴとメニュー） -->
         <header class="topbar">
             <div class="brand">
                 <div class="titles">
@@ -62,6 +65,7 @@ foreach ($all_stamps as $s) {
                 <a class="navbtn" href="index.php">投稿する</a>
                 <a class="navbtn" href="export_csv.php">CSVで保存</a>
                 <?php
+                // ローカル環境のときだけDBリセットボタンを表示
                 $host = $_SERVER['HTTP_HOST'] ?? '';
                 $is_local = ($host === 'localhost' || strpos($host, '127.0.0.1') !== false);
                 if ($is_local):
@@ -77,6 +81,7 @@ foreach ($all_stamps as $s) {
             </nav>
         </header>
 
+        <!-- 投稿カード一覧 -->
         <section class="card">
             <div class="card-inner">
                 <div class="deck">

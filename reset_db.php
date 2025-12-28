@@ -1,9 +1,8 @@
 <?php
+// DBリセット用スクリプト
 require_once __DIR__ . '/db_conn.php';
 
-// 追加の保護：簡易パスコード（自分だけが実行できるように）
-// - config.php に 'reset_key' を置くか、環境変数 RESET_KEY を使う。
-// - 呼び出しは reset_db.php?key=XXXX の形。
+// セキュリティ：リセットキーの取得
 $reset_key = '';
 if (is_file(__DIR__ . '/config.php')) {
     $cfg = require __DIR__ . '/config.php';
@@ -15,7 +14,7 @@ if ($reset_key === '') {
     $reset_key = (string)getenv('RESET_KEY');
 }
 
-// このページはローカル環境のみで有効（本番での事故防止）
+// ローカル環境のみ実行可
 $host = $_SERVER['HTTP_HOST'] ?? '';
 $is_local = ($host === 'localhost' || strpos($host, '127.0.0.1') !== false);
 if (!$is_local) {
@@ -23,7 +22,7 @@ if (!$is_local) {
     exit('Forbidden: reset is allowed only on local environment.');
 }
 
-// reset_keyが設定されている場合は一致必須（未設定ならローカル制限のみ）
+// リセットキーが必要な場合はチェック
 if ($reset_key !== '') {
     $given = (string)($_GET['key'] ?? '');
     if ($given === '' || !hash_equals($reset_key, $given)) {
@@ -35,7 +34,7 @@ if ($reset_key !== '') {
 $confirmed = (($_GET['confirm'] ?? '') === '1');
 
 if (!$confirmed) {
-    // 簡易確認画面（JS不要）
+    // 確認画面を表示
 ?>
     <!doctype html>
     <html lang="ja">
@@ -83,11 +82,11 @@ if (!$confirmed) {
     exit;
 }
 
+// ここから実際のリセット処理
 try {
     $pdo = db_conn();
 
-    // 注: TRUNCATE はDBによって暗黙コミットを伴うため、トランザクション制御は使わない。
-    // 外部キー制約がある場合も考慮して、一時的に無効化する。
+    // 外部キー制約がある場合も考慮して、一時的に無効化
     $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
     try {
         $pdo->exec('TRUNCATE TABLE gs_wf30_comments');
